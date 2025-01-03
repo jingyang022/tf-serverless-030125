@@ -30,3 +30,20 @@ resource "aws_cloudwatch_log_group" "lambda_log_group" {
  name              = "/aws/lambda/yap-sqs-processing"
  retention_in_days = 14
 }
+
+# SQS event to trigger Lambda function
+resource "aws_lambda_event_source_mapping" "sqs_trigger_lambda" {
+  event_source_arn = aws_sqs_queue.sqs_queue.arn
+  function_name    = aws_lambda_function.lambda_func.arn
+}
+
+#############################################################
+# Simple Queue Service (SQS)
+#############################################################
+resource "aws_sqs_queue" "sqs_queue" {
+  name = "yap-work-queue"
+
+  tags = {
+    name = "yap-work-queue"
+  }
+}

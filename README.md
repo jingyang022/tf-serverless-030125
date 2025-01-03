@@ -5,3 +5,4 @@
 <p>Step 1: Create Lambda execution role
 <br>Step 2: Create Lambda function
 <br>Step 3: Create SQS
+<br>Step 4: Send messages to the Queue
